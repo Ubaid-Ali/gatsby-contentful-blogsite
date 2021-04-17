@@ -67,3 +67,6 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# i have added .env file for contentful spaceId and accessToken
+.env.development
