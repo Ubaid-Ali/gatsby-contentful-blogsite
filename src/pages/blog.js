@@ -9,13 +9,13 @@ const Blog = () => {
   const data = useStaticQuery(
     graphql`
       query {
-        allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+        allContentfulBlogPost(sort: { fields: publishDate, order: DESC }) {
           edges {
             node {
               title
               id
               slug
-              publishedDate(formatString: "DD MMMM, YYYY")
+              publishDate(formatString: "DD MMMM, YYYY")
               featuredImage {
                 fluid(maxWidth: 500) {
                   ...GatsbyContentfulFluid
@@ -46,7 +46,7 @@ const Blog = () => {
                 <Link to={`/blog/${edge.node.slug}/`}>{edge.node.title}</Link>
               </h2>
               <div className="meta">
-                <span>Posted on {edge.node.publishedDate}</span>
+                <span>Posted on {edge.node.publishDate}</span>
               </div>
               {edge.node.featuredImage && (
                 <Img
