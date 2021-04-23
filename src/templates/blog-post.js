@@ -12,9 +12,12 @@ export const query = graphql`
   query($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
       title
+      excerpt {
+        excerpt
+      }
       publishDate(formatString: "Do MMMM, YYYY")
       featuredImage {
-        fluid(maxWidth: 750) {
+        fluid(maxWidth: 500) {
           ...GatsbyContentfulFluid
         }
       }
@@ -23,7 +26,7 @@ export const query = graphql`
         references {
           contentful_id
           title
-          fluid(maxWidth: 750) {
+          fluid(maxWidth: 300) {
             src
           }
         }
@@ -33,14 +36,15 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data }) => {
+  
   // Richtext Contentful
   let { body } = data?.contentfulBlogPost
-
   const assets = new Map(body.references.map(ref => [ref.contentful_id, ref]))
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
-        const url = assets.get(node.data.target.sys.id).fluid.src
+        console.log(`assets.get`, assets.get(node.data.target.sys.id).fluid?.src)
+        const url = assets.get(node.data.target.sys.id).fluid?.src
         const alt = assets.get(node.data.target.sys.id).title
         return <img alt={alt} src={url} />
       },
@@ -53,9 +57,8 @@ const BlogPost = ({ data }) => {
       <Link to="/blog/">Visit the Blog Page</Link>
       <div className="content">
         <h1>{data.contentfulBlogPost.title}</h1>
-        <span className="meta">
-          Posted on {data.contentfulBlogPost.publishDate}
-        </span>
+        <span className="meta"> Posted on {data.contentfulBlogPost.publishDate} </span>
+        <p>{data.contentfulBlogPost.excerpt.excerpt}</p>
 
         {data.contentfulBlogPost.featuredImage && (
           <Img
@@ -65,6 +68,8 @@ const BlogPost = ({ data }) => {
           />
         )}
         {documentToReactComponents(JSON.parse(body.raw), options)}
+
+        <p>The article was publish in {data.contentfulBlogPost.publishDate}</p>
       </div>
     </Layout>
   )
