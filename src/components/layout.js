@@ -22,10 +22,10 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
+// console.log(`site`,   data.site)
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={data.site.siteMetadata?.title || `Welcome to this Blog`} />
       <div
         style={{
           margin: `0 auto`,

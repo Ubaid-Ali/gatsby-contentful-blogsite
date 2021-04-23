@@ -17,7 +17,7 @@ export const query = graphql`
       }
       publishDate(formatString: "Do MMMM, YYYY")
       featuredImage {
-        fluid(maxWidth: 500) {
+        fluid(maxWidth: 750) {
           ...GatsbyContentfulFluid
         }
       }
@@ -36,14 +36,20 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data }) => {
-  
+  // DeStructure
+  const {
+    publishDate,
+    title,
+    excerpt,
+    featuredImage,
+    body,
+  } = data?.contentfulBlogPost
+
   // Richtext Contentful
-  let { body } = data?.contentfulBlogPost
   const assets = new Map(body.references.map(ref => [ref.contentful_id, ref]))
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
-        console.log(`assets.get`, assets.get(node.data.target.sys.id).fluid?.src)
         const url = assets.get(node.data.target.sys.id).fluid?.src
         const alt = assets.get(node.data.target.sys.id).title
         return <img alt={alt} src={url} />
@@ -53,23 +59,23 @@ const BlogPost = ({ data }) => {
 
   return (
     <Layout>
-      <Seo title={data.contentfulBlogPost.title} />
-      <Link to="/blog/">Visit the Blog Page</Link>
+      <Seo title={title} />
+      <Link to="/blog/">Visit the Blogs Page</Link>
       <div className="content">
-        <h1>{data.contentfulBlogPost.title}</h1>
-        <span className="meta"> Posted on {data.contentfulBlogPost.publishDate} </span>
-        <p>{data.contentfulBlogPost.excerpt.excerpt}</p>
+        <h1>{title}</h1>
+        <span className="meta"> Posted on {publishDate} </span>
+        <p>{excerpt.excerpt}</p>
 
-        {data.contentfulBlogPost.featuredImage && (
+        {featuredImage && (
           <Img
             className="featured"
-            fluid={data.contentfulBlogPost.featuredImage.fluid}
-            alt={data.contentfulBlogPost.featuredImage.title}
+            fluid={featuredImage.fluid}
+            alt={featuredImage.title}
           />
         )}
         {documentToReactComponents(JSON.parse(body.raw), options)}
 
-        <p>The article was publish in {data.contentfulBlogPost.publishDate}</p>
+        <p>The article was published in {publishDate}</p>
       </div>
     </Layout>
   )
