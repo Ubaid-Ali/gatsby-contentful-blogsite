@@ -3,7 +3,6 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Img from "gatsby-image"
-import Seo from "../components/seo"
 
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -36,14 +35,14 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data }) => {
-  // DeStructure
+  // DeStructure data
   const {
     publishDate,
     title,
     excerpt,
     featuredImage,
     body,
-  } = data?.contentfulBlogPost
+  } = data.contentfulBlogPost
 
   // Richtext Contentful
   const assets = new Map(body.references.map(ref => [ref.contentful_id, ref]))
@@ -59,7 +58,6 @@ const BlogPost = ({ data }) => {
 
   return (
     <Layout>
-      <Seo title={title} />
       <Link to="/blog/">Go back</Link>
       <div className="content">
         <h1>{title}</h1>

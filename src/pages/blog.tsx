@@ -3,7 +3,6 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Seo from "../components/seo"
 
 
 const Blog = () => {
@@ -58,7 +57,6 @@ const Blog = () => {
 
   return (
     <Layout>
-      <Seo title="Blog" />
       <p>
         <Link to="/">Go back</Link>
       </p>
