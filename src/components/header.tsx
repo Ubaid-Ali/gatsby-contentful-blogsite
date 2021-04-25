@@ -1,11 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-interface props {
-  siteTitle: String
-}
 
-const Header: React.FC<props> = ({ siteTitle }) => (
+const Header: React.FC = () => (
   <header
     style={{
       background: `rebeccapurple`,
@@ -16,20 +13,31 @@ const Header: React.FC<props> = ({ siteTitle }) => (
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <ul style={{ padding: "1rem", listStyle: "none", margin: "0", display: "flex", fontFamily: "sans-serif", fontWeight: "bold" }}>
+
+        <li style={{ margin: 0, padding: "0 0.5rem" }}>
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >Home
+          </Link>
+        </li>
+        <li style={{ margin: 0, padding: "0 0.5rem" }}>
+          <Link
+            to="/blog/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >Blogs
+          </Link>
+        </li>
+      </ul>
     </div>
   </header>
 )

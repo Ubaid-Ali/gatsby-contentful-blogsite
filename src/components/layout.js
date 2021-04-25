@@ -22,10 +22,12 @@ const Layout = ({ children }) => {
       }
     }
   `)
-// console.log(`site`,   data.site)
+
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Welcome to this Blog`} />
+    <div style={{ display: "flex", flexFlow: "column", fontFamily: "sans-serif" , }}>
+      <Header
+        siteTitle={data.site.siteMetadata?.title || `Welcome to this Blog`}
+      />
       <div
         style={{
           margin: `0 auto`,
@@ -36,15 +38,15 @@ const Layout = ({ children }) => {
         <main>{children}</main>
         <footer
           style={{
+            fontFamily:"fantasy",
+            fontSize:"16px",
             marginTop: `2rem`,
           }}
         >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          © {new Date().getFullYear()}, Created by Ubaid Ali
         </footer>
       </div>
-    </>
+    </div>
   )
 }
 

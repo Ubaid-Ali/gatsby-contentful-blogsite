@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const Blog = () => {
   const data = useStaticQuery(
@@ -33,9 +33,9 @@ const Blog = () => {
 
   return (
     <Layout>
-      <SEO title="Blog" />
+      <Seo title="Blog" />
       <p>
-        <Link to="/">Go back to the Homepage</Link>
+        <Link to="/">Go back</Link>
       </p>
       <ul className="posts">
         {/* map */}

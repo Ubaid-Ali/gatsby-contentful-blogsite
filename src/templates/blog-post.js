@@ -60,7 +60,7 @@ const BlogPost = ({ data }) => {
   return (
     <Layout>
       <Seo title={title} />
-      <Link to="/blog/">Visit the Blogs Page</Link>
+      <Link to="/blog/">Go back</Link>
       <div className="content">
         <h1>{title}</h1>
         <span className="meta"> Posted on {publishDate} </span>
