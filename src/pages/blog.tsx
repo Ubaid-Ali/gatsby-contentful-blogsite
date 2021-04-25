@@ -5,7 +5,31 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+
 const Blog = () => {
+
+  interface edgeType {
+    node: {
+      excerpt: {
+        excerpt: string
+      },
+      featuredImage: {
+        title: string
+        fluid: {
+          aspectRatio: number
+          base64: string
+          sizes: string
+          src: string
+          srcSet: string
+        }
+      },
+      id: string
+      publishDate: string
+      slug: string
+      title: string
+    }
+  }
+
   const data = useStaticQuery(
     graphql`
       query {
@@ -17,6 +41,7 @@ const Blog = () => {
               slug
               publishDate(formatString: "DD MMMM, YYYY")
               featuredImage {
+                title
                 fluid(maxWidth: 500) {
                   ...GatsbyContentfulFluid
                 }
@@ -39,7 +64,9 @@ const Blog = () => {
       </p>
       <ul className="posts">
         {/* map */}
-        {data.allContentfulBlogPost.edges.map(edge => {
+        {data.allContentfulBlogPost.edges.map((edge: edgeType) => {
+
+
           return (
             <li className="post" key={edge.node.id}>
               <h2>
