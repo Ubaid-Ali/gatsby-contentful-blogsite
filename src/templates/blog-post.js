@@ -7,6 +7,7 @@ import Img from "gatsby-image"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
+
 export const query = graphql`
   query($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
@@ -16,7 +17,7 @@ export const query = graphql`
       }
       publishDate(formatString: "Do MMMM, YYYY")
       featuredImage {
-        fluid(maxWidth: 750) {
+        fluid {
           ...GatsbyContentfulFluid
         }
       }
@@ -25,7 +26,7 @@ export const query = graphql`
         references {
           contentful_id
           title
-          fluid(maxWidth: 300) {
+          fluid(maxWidth: 300, maxHeight: 150) {
             src
           }
         }
@@ -35,7 +36,8 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data }) => {
-  // DeStructure data
+  
+  // data DeStructure
   const {
     publishDate,
     title,
