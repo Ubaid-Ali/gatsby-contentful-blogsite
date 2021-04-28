@@ -1,0 +1,28 @@
+.header {
+  background: rebeccapurple;
+  margin-bottom: 1.45rem;
+}
+
+.header-container {
+  margin: 0 auto;
+  max-width: 960;
+}
+
+.header-ul {
+  padding: 1rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+.ul-child {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-li {
+  margin: 0;
+  padding: 0 0.5rem;
+}
