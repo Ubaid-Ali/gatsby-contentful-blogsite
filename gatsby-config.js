@@ -45,5 +45,28 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: "AIzaSyDDtMf9eDFI5uQDcSF0-hRzAZ09QX_Bvqo",
+          authDomain: "gatsby-blog-2.firebaseapp.com",
+          projectId: "gatsby-blog-2",
+          storageBucket: "gatsby-blog-2.appspot.com",
+          messagingSenderId: "87359670018",
+          appId: "1:87359670018:web:0e0d1040787b207750a41b"
+        },
+        features: {
+          auth: true,
+          database: true,
+          firestore: true,
+          storage: true,
+          messaging: true,
+          functions: true,
+          performance: true,
+          analytics: true,
+        },
+      },
+    },
   ],
 }

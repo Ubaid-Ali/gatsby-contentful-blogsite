@@ -40,6 +40,16 @@ const Header: React.FC<headerProps> = () => (
           >Blogs
           </Link>
         </li>
+        <li style={{ margin: 0, padding: "0 0.5rem" }}>
+          <Link
+            to="/register/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >Register
+          </Link>
+        </li>
       </ul>
     </div>
   </header>
