@@ -1,58 +1,98 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import React, { useContext } from "react"
+import { Link, navigate } from "gatsby"
+import { AuthContext } from "../context/auth"
+import firebase from 'gatsby-plugin-firebase'
+import "./header.css"
 
 interface headerProps {
   siteTitle: string
 }
 
-const Header: React.FC<headerProps> = () => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-      }}
-    >
-      <ul style={{ padding: "1rem", listStyle: "none", margin: "0", display: "flex", fontFamily: "sans-serif", fontWeight: "bold" }}>
+const Header: React.FC<headerProps> = () => {
 
-        <li style={{ margin: 0, padding: "0 0.5rem" }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >Home
+  const { user } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    firebase.auth().signOut()
+    navigate("/login")
+  }
+
+  return (
+
+    <header className="header">
+      <div
+        className="header-container">
+        <ul className="header-ul" >
+
+          <div className="ul-child">
+            <li className="header-li">
+              <Link
+                to="/"
+                style={{
+                  color: `white`,
+                  textDecoration: `none`,
+                }}
+              >Home
           </Link>
-        </li>
-        <li style={{ margin: 0, padding: "0 0.5rem" }}>
-          <Link
-            to="/blog/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >Blogs
+            </li>
+            <li className="header-li" >
+              <Link
+                to="/blog/"
+                style={{
+                  color: `white`,
+                  textDecoration: `none`,
+                }}
+              >Blogs
           </Link>
-        </li>
-        <li style={{ margin: 0, padding: "0 0.5rem" }}>
-          <Link
-            to="/register/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >Register
+            </li>
+          </div>
+
+          <div className="ul-child">
+            {!user ?
+              <>
+
+                <li className="header-li" >
+                  <Link
+                    to="/register/"
+                    style={{
+                      color: `white`,
+                      textDecoration: `none`,
+                    }}
+                  >Register
           </Link>
-        </li>
-      </ul>
-    </div>
-  </header>
-)
+                </li>
+                <li className="header-li">
+                  <Link
+                    to="/login/"
+                    style={{
+                      color: `white`,
+                      textDecoration: `none`,
+                    }}
+                  >Login
+          </Link>
+                </li>
+              </>
+              :
+              <li
+                onClick={handleLogout}
+                className="header-li">
+                <span
+                  // to="/login"
+                  style={{
+                    color: `white`,
+                    textDecoration: `none`,
+                    cursor: "pointer"
+                  }}
+                >Logout
+                </span>
+              </li>
+            }
+          </div>
+
+        </ul>
+      </div>
+    </header>
+  )
+}
 
 export default Header

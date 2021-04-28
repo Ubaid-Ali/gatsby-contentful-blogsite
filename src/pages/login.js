@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import firebase from "gatsby-plugin-firebase"
-import { navigate, Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import Layout from "../components/layout"
 import { AuthContext } from "../context/auth"
 
@@ -24,15 +24,16 @@ const Register = () => {
       setData({ ...data, error: null })
       const result = await firebase
         .auth()
-        .createUserWithEmailAndPassword(data.email, data.password)
+        .signInWithEmailAndPassword(data.email, data.password)
       setUser(result)
-      console.log(`user created`, result)
+      alert("Logged in Successfully!")
       navigate("/blog")
     } catch (err) {
       console.log(`err`, err)
       setData({ ...data, error: err.message })
     }
   }
+  // console.log(`logedIn`, logedIn)
 
   return (
     <Layout>
@@ -59,9 +60,9 @@ const Register = () => {
             />
           </div>
           <p style={{ color: "red" }}>{data.error ? data.error : null}</p>
-          <input type="submit" value="Register" />
+          <input type="submit" value="Login" />
           <p>
-            <Link to="/login/">already have account?</Link>
+            <Link to="/register/">create new account!</Link>
           </p>
         </form>
       </div>
