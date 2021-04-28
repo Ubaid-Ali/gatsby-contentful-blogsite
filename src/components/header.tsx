@@ -12,8 +12,8 @@ const Header: React.FC<headerProps> = () => {
 
   const { user } = useContext(AuthContext)
 
-  const handleLogout = () => {
-    firebase.auth().signOut()
+  const handleLogout  = async () => {
+    await firebase.auth().signOut()
     navigate("/login")
   }
 
@@ -53,12 +53,12 @@ const Header: React.FC<headerProps> = () => {
 
                 <li className="header-li" >
                   <Link
-                    to="/register/"
+                    to="/signup/"
                     style={{
                       color: `white`,
                       textDecoration: `none`,
                     }}
-                  >Register
+                  >Signup
           </Link>
                 </li>
                 <li className="header-li">

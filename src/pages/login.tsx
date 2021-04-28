@@ -1,11 +1,17 @@
 import React, { useState, useContext } from "react"
 import firebase from "gatsby-plugin-firebase"
-import { navigate, Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import Layout from "../components/layout"
 import { AuthContext } from "../context/auth"
 
+interface dataTypes {
+  email: string,
+  password: string,
+  error: null | any,
+}
+
 const Register = () => {
-  const [data, setData] = useState({
+  const [data, setData] = useState<dataTypes>({
     email: "",
     password: "",
     error: null,
@@ -13,20 +19,20 @@ const Register = () => {
 
   const { setUser } = useContext(AuthContext)
 
-  const onChangeHandler = e => {
+  const onChangeHandler = (e: { target: { name: string; value: string } }) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
 
     try {
       setData({ ...data, error: null })
       const result = await firebase
         .auth()
-        .createUserWithEmailAndPassword(data.email, data.password)
+        .signInWithEmailAndPassword(data.email, data.password)
       setUser(result)
-      console.log(`user created`, result)
+      alert("Logged in Successfully!")
       navigate("/blog")
     } catch (err) {
       console.log(`err`, err)
@@ -36,10 +42,11 @@ const Register = () => {
 
   return (
     <Layout>
-      <div>
-        <form onSubmit={handleSubmit}>
+      <div className="login-container">
+        <form onSubmit={handleSubmit} className="form">
           <div>
             <label htmlFor="email">Email</label>
+            <br/>
             <input
               type="email"
               name="email"
@@ -50,6 +57,7 @@ const Register = () => {
           </div>
           <div>
             <label htmlFor="password">Password</label>
+            <br/>
             <input
               type="password"
               name="password"
@@ -59,9 +67,10 @@ const Register = () => {
             />
           </div>
           <p style={{ color: "red" }}>{data.error ? data.error : null}</p>
-          <input type="submit" value="Register" />
+          <input type="submit" value="Login" />
+          <br/>
           <p>
-            <Link to="/login/">already have account?</Link>
+            <Link to="/signup/">create new account!</Link>
           </p>
         </form>
       </div>

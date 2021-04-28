@@ -647,3 +647,13 @@ pre tt:after {
   border-color: #222;
   background-color: #222;
 }
+
+.login-container,
+.signup-container {
+  display: flex;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+}

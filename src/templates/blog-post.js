@@ -1,8 +1,9 @@
-import React, { useEffect } from "react"
+import React, { useContext } from "react"
 import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Img from "gatsby-image"
+import { AuthContext } from "../context/auth"
 
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -35,6 +36,7 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data }) => {
+  const { user } = useContext(AuthContext)
 
   // data DeStructure
   const {
@@ -63,7 +65,6 @@ const BlogPost = ({ data }) => {
       <div className="content">
         <h1>{title}</h1>
         <span className="meta"> Posted on {publishDate} </span>
-        <p>{excerpt.excerpt}</p>
 
         {featuredImage && (
           <Img
@@ -72,9 +73,22 @@ const BlogPost = ({ data }) => {
             alt={featuredImage.title}
           />
         )}
-        {documentToReactComponents(JSON.parse(body.raw), options)}
+        <p>{excerpt.excerpt}</p>
 
-        <p>The article was published in {publishDate}</p>
+        {/* show if logged in */}
+        {user && body ? (
+          <>
+            {documentToReactComponents(JSON.parse(body?.raw), options)}
+            <p>The article was published in {publishDate}</p>
+          </>
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <p className="button">
+              <Link to="/signup/">SignUp</Link>
+              <span style={{ display: "block" }}>for more details</span>
+            </p>
+          </div>
+        )}
       </div>
     </Layout>
   )
