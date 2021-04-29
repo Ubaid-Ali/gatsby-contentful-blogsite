@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react"
 import firebase from "gatsby-plugin-firebase"
-
+require('firebase/auth')
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
