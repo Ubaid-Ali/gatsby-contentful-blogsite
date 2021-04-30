@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 
-require("firebase/auth")
+import "firebase/auth"
 const React = require("react")
 import AuthProvider from "./src/context/auth" 
 
