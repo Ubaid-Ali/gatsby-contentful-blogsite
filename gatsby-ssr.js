@@ -5,3 +5,11 @@
  */
 
 // You can delete this file if you're not using it
+
+require("firebase/auth")
+const React = require("react")
+import AuthProvider from "./src/context/auth" 
+
+export const wrapRootElement = ({ element }) => (
+  <AuthProvider>{element}</AuthProvider>
+)

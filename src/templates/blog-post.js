@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Img from "gatsby-image"
-// import { AuthContext } from "../context/auth"
+import { AuthContext } from "../context/auth"
 
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -36,7 +36,7 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data }) => {
-  // const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   // data DeStructure
   const {
@@ -76,7 +76,7 @@ const BlogPost = ({ data }) => {
         <p>{excerpt.excerpt}</p>
 
         {/* show if logged in otherwise SignUp */}
-        {body ? (
+        {user && body ? (
           <>
             {documentToReactComponents(JSON.parse(body?.raw), options)}
             <p>The article was published in {publishDate}</p>
