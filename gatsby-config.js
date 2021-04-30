@@ -1,11 +1,13 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({path: `.env.${process.env.NODE_ENV}`},);
+}
 
 module.exports = {
   siteMetadata: {
     title: `Gatsby Blog Site`,
-    description: `This is very imformative blogsite about anything.`,
+    description: `This is very imformative blogsite about Mobile and Laptop.`,
     author: `@ubaid`,
   },
   plugins: [
@@ -49,22 +51,12 @@ module.exports = {
       resolve: "gatsby-plugin-firebase",
       options: {
         credentials: {
-          apiKey: "AIzaSyDDtMf9eDFI5uQDcSF0-hRzAZ09QX_Bvqo",
-          authDomain: "gatsby-blog-2.firebaseapp.com",
-          projectId: "gatsby-blog-2",
-          storageBucket: "gatsby-blog-2.appspot.com",
-          messagingSenderId: "87359670018",
-          appId: "1:87359670018:web:0e0d1040787b207750a41b"
-        },
-        features: {
-          auth: true,
-          database: true,
-          firestore: true,
-          storage: true,
-          messaging: true,
-          functions: true,
-          performance: true,
-          analytics: true,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          apiKey: process.env.FIREBASE_API_KEY,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
         },
       },
     },

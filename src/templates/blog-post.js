@@ -75,7 +75,7 @@ const BlogPost = ({ data }) => {
         )}
         <p>{excerpt.excerpt}</p>
 
-        {/* show if logged in */}
+        {/* show if logged in otherwise SignUp */}
         {user && body ? (
           <>
             {documentToReactComponents(JSON.parse(body?.raw), options)}
