@@ -67,7 +67,7 @@ const Register = () => {
             />
           </div>
           <p style={{ color: "red" }}>{data.error ? data.error : null}</p>
-          <input type="submit" value="Register" />
+          <input type="submit" value="SignUp" />
           <br/>
           <p>
             <Link to="/login/">already have account?</Link>
