@@ -35,7 +35,7 @@ const Register = () => {
       console.log(`user created`, result)
       navigate("/blog")
     } catch (err) {
-      // console.log(`err`, err)
+      console.log(`err`, err)
       setData({ ...data, error: err.message })
     }
   }
