@@ -5,7 +5,7 @@
 > Can view all blogs but not individually until logged in.
 > It includes 2 branch master and dev.
 
-[See live / Deployed site](https://blog-contentful-gatsby-2.netlify.app/)
+> [See live / Deployed site](https://blog-contentful-gatsby-2.netlify.app/)
 
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
