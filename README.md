@@ -1,3 +1,13 @@
+
+## Gatsby Blog
+
+> This blog site is built with Contentful and Firebase authentication.
+> Can view all blogs but not individually until logged in.
+> It includes 2 branch master and dev.
+
+[See live / Deployed site](https://blog-contentful-gatsby-2.netlify.app/)
+
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
