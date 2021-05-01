@@ -77,7 +77,6 @@ const Header: React.FC<headerProps> = () => {
                 onClick={handleLogout}
                 className="header-li">
                 <span
-                  // to="/login"
                   style={{
                     color: `white`,
                     textDecoration: `none`,

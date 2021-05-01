@@ -1,12 +1,12 @@
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config({path: `.env.${process.env.NODE_ENV}`},);
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   dotenv.config({path: `.env.${process.env.NODE_ENV}`},);
+// }
 
-// require("dotenv").config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// })
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -55,12 +55,12 @@ module.exports = {
       resolve: "gatsby-plugin-firebase",
       options: {
         credentials: {
-          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-          apiKey: process.env.FIREBASE_API_KEY,
-          projectId: process.env.FIREBASE_PROJECT_ID,
-          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-          appId: process.env.FIREBASE_APP_ID,
+          authDomain: "gatsby-blog-1.firebaseapp.com",
+          apiKey: "AIzaSyBvnXJGFVKHyq0VFxSpP94oCaFs1BX2ET8",
+          projectId: "gatsby-blog-1",
+          storageBucket: "gatsby-blog-1.appspot.com",
+          messagingSenderId: "283879494225",
+          appId: "1:283879494225:web:79404b6eb09102386dde70",
         },
         features: {
           auth: true,
