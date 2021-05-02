@@ -5,8 +5,7 @@
  */
 // gatsby-browser.js and gatsby-ssr.js
 
-import firebase from 'firebase'
-require('firebase/auth')
+import "firebase/auth"
 import React from "react"
 import AuthProvider from "./src/context/auth" 
 
