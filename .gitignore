@@ -70,4 +70,3 @@ yarn-error.log
 
 # i have added .env file for contentful spaceId and accessToken
 .env.development
-.env.production
